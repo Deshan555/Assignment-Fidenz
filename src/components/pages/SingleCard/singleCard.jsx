@@ -1,0 +1,131 @@
+import React, { useEffect, useState } from "react";
+
+import { convertKelvinToCelsius } from '../../../services/Functions';
+
+import { timeFormate } from '../../../services/Functions';
+
+import { RandomColor } from '../../../services/Functions';
+
+import { fetchWeatherData } from '../../../services/ApiHandler';
+
+import { Link } from 'react-router-dom';
+
+function SingleCard(props) {
+
+    const [weatherData, setWeatherData] = useState(null);
+
+    useEffect(() => {
+
+        fetchWeatherData(props.cityCode)
+            .then(weatherData => {
+                setWeatherData(weatherData);
+            });
+    }, []);
+
+    if (!weatherData) {
+        return <div>Loading...</div>;
+    }
+
+    const city = weatherData.name;
+
+    const temperature = convertKelvinToCelsius(weatherData.main.temp);
+
+    const minTemperature = convertKelvinToCelsius(weatherData.main.temp_min);
+
+    const maxTemperature = convertKelvinToCelsius(weatherData.main.temp_max);
+
+    const pressure = weatherData.main.pressure;
+
+    const humidity = weatherData.main.humidity;
+
+    const visibility = weatherData.visibility;
+
+    const windSpeed = weatherData.wind.speed;
+
+    const countryName = weatherData.sys.country;
+
+    const deg = weatherData.wind.deg;
+
+    const wind = windSpeed + " m/s, " + deg + " deg";
+
+    const sunrise = new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString();
+
+    const sunset = new Date(weatherData.sys.sunset * 1000).toLocaleTimeString();
+
+    const weatherDescription = weatherData.weather[0].description;
+
+    const weatherIcon = weatherData.weather[0].icon;
+
+    const time = timeFormate();
+
+    const randomColor = RandomColor();
+
+    // add custom css scripts
+    const myStyles = {
+        background: `url(../../../../../images/1.png) no-repeat`,
+        backgroundSize: 'cover',
+        backgroundColor: randomColor
+    };
+
+    return (
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div className="card weather-card" >
+                        <div className="card-head" style={myStyles}>
+                            <div class="mt-3 ml-4">
+                                <Link to={`/`} className="links">
+                                    <b>
+                                        <i class="bi bi-arrow-left back-icon mx-3 back-icon"></i>
+                                    </b>
+                                </Link>
+                            </div>
+                            <div className="container text-center">
+                                <div className="row mt-5">
+                                    <h1>{city},{countryName}</h1>
+                                    <h5 className="list-fonts">{time}</h5>
+                                    <div className="row mt-4 mb-4">
+                                        <div className="col-sm-6  border-end">
+                                            <img src={`http://openweathermap.org/img/w/${weatherIcon}.png`} alt="weather-icon" />
+                                            <h5>{weatherDescription}</h5>
+                                        </div>
+                                        <div className="col-sm-6">
+                                            <h1>{temperature} &#8451;</h1>
+                                            <h6 className="list-fonts"><b>Temp Min: </b>{minTemperature} &#8451;</h6>
+                                            <h6 className="list-fonts"><b>Temp Max: </b>{maxTemperature} &#8451;</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-body">
+                            <div className="container text-center">
+                                <div className="row">
+                                    <div className="col-sm-4 border-end">
+                                        <h6 className="list-font"><b>Pressure: </b>{pressure} Hpa</h6>
+                                        <h6 className="list-font"><b>Humidity: </b>{humidity}%</h6>
+                                        <h6 className="list-font"><b>Visibility: </b>{visibility}Km</h6>
+                                    </div>
+                                    <div className="col-sm-4 border-end">
+                                        <div className="mt-2">
+                                            <i className="bi bi-arrow-up-right-circle-fill icon"></i>
+                                            <h5 className="list-fonts"><b></b>{wind}</h5>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-4 mt-4">
+                                        <h6 className="list-fonts"><b>Sunrise: </b>{sunrise}</h6>
+                                        <h6 className="list-fonts"><b>Sunset: </b>{sunset}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default SingleCard;
+

@@ -1,0 +1,73 @@
+body{   
+    background: url(./images/background.png) no-repeat, rgb(30, 32, 39);
+    background-size:cover, auto;
+    background-size: 100%;
+    color: azure;
+   }
+
+.weather-card{
+    background: url(./images/card.png) no-repeat, rgb(30, 32, 39);
+    background-size:cover, auto;
+    background-size: 100%;
+    width: 90%;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.card-body{
+    background-color: #303030;
+}
+
+.single-card{
+    background: url(./images/card.png) no-repeat, rgb(30, 32, 39);
+    background-size:cover, auto;
+    background-size: 100%;
+    width: 100%;
+}
+
+.links{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.back-icon{
+    font-size: larger;
+}
+
+.font-Color{
+    color: aliceblue;
+}
+
+.finder{
+    width: 40%;
+    height: 20px;
+}
+
+.finder-button{
+    background: 'blueviolet';
+}
+
+.list-font{
+    color: aliceblue;
+
+    font-size: 14px;
+
+    margin-top: 4px;
+
+    align-items: center;
+}
+
+.list-fonts{
+    color: aliceblue;
+
+    font-size: 14px;
+
+    margin-top: 4px;
+
+    align-items: center;
+}
+
+.icon{
+
+    font-size: 30px;
+}
