@@ -98,7 +98,7 @@ function SingleCard(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body rounded-bottom">
                             <div className="container text-center">
                                 <div className="row">
                                     <div className="col-sm-4 border-end">
