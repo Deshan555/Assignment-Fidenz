@@ -50,8 +50,10 @@ function Card(props) {
 
   const wind = windSpeed + " m/s, " + deg + " deg";
 
+  const wind_pass = windSpeed + " m;s, " + deg + " deg";
+
   const sunrise = Time_Formatter(weatherData.sys.sunrise);
-  
+
   const sunset = Time_Formatter(weatherData.sys.sunrise);
 
   const weatherDescription = weatherData.weather[0].description;
@@ -61,17 +63,20 @@ function Card(props) {
   const time = timeFormate();
 
   const randomColor = RandomColor();
-
-  // add custom css scripts
+  
   const myStyles = {
     background: `url(../../../../../images/1.png) no-repeat, ${randomColor}`,
   };
 
   return (
-    <Link to={`/weather/${props.city}`} className="links">
+    <Link
+      to={`/${countryName}/${temperature}/${minTemperature}/${maxTemperature}/${pressure}/${humidity}/
+      ${visibility}/${wind_pass}/${weatherData.sys.sunrise}/${weatherData.sys.sunset}/${weatherDescription}/${weatherIcon}/${city}`}
+      className="links"
+    >
       <div>
         <div className="card weather-card">
-          <div className="card-head"  style={myStyles}>
+          <div className="card-head" style={myStyles}>
             <div className="container text-center">
               <div className="row mt-5">
                 <div className="col-sm-6">
@@ -102,8 +107,8 @@ function Card(props) {
                 </div>
                 <div className="col-sm-4 border-end">
                   <div className="mt-4">
-                  <i className="bi bi-arrow-up-right-circle-fill"></i>
-                  <h5 className="list-font">{wind}</h5>
+                    <i className="bi bi-arrow-up-right-circle-fill"></i>
+                    <h5 className="list-font">{wind}</h5>
                   </div>
                 </div>
                 <div className="col-sm-4 mt-4">
