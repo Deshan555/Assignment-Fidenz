@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-import { convertKelvinToCelsius } from '../../../services/Functions';
+import React from 'react';
 
 import { Time_Formatter } from '../../../services/Functions';
 
