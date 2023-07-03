@@ -12,6 +12,7 @@ body{
     width: 90%;
     color: aliceblue;
     text-decoration: none;
+    border-radius: 10px;
 }
 
 .card-body{
@@ -23,6 +24,10 @@ body{
     background-size:cover, auto;
     background-size: 100%;
     width: 100%;
+}
+
+.card-head{
+    border-radius: 5px 5px 0px 0px;
 }
 
 .links{
