@@ -2,67 +2,29 @@ import React, { useEffect, useState } from "react";
 
 import { convertKelvinToCelsius } from '../../../services/Functions';
 
+import { Time_Formatter } from '../../../services/Functions';
+
 import { timeFormate } from '../../../services/Functions';
 
 import { RandomColor } from '../../../services/Functions';
 
-import { fetchWeatherData } from '../../../services/ApiHandler';
-
 import { Link } from 'react-router-dom';
+
+import { useParams } from 'react-router-dom';
 
 function SingleCard(props) {
 
-    const [weatherData, setWeatherData] = useState(null);
-
-    useEffect(() => {
-
-        fetchWeatherData(props.cityCode)
-            .then(weatherData => {
-                setWeatherData(weatherData);
-            });
-    }, []);
-
-    if (!weatherData) {
-        return <div>Loading...</div>;
-    }
-
-    const city = weatherData.name;
-
-    const temperature = convertKelvinToCelsius(weatherData.main.temp);
-
-    const minTemperature = convertKelvinToCelsius(weatherData.main.temp_min);
-
-    const maxTemperature = convertKelvinToCelsius(weatherData.main.temp_max);
-
-    const pressure = weatherData.main.pressure;
-
-    const humidity = weatherData.main.humidity;
-
-    const visibility = weatherData.visibility;
-
-    const windSpeed = weatherData.wind.speed;
-
-    const countryName = weatherData.sys.country;
-
-    const deg = weatherData.wind.deg;
-
-    const wind = windSpeed + " m/s, " + deg + " deg";
-
-    const sunrise = new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString();
-
-    const sunset = new Date(weatherData.sys.sunset * 1000).toLocaleTimeString();
-
-    const weatherDescription = weatherData.weather[0].description;
-
-    const weatherIcon = weatherData.weather[0].icon;
+    const { country, temperature, minTemp, maxTemp, pressure, humidity, visibility, wind, sunrise, sunset, weatherDescription, weatherIcon, city } = useParams();
 
     const time = timeFormate();
 
     const randomColor = RandomColor();
 
-    // add custom css scripts
+    const sunrise_ = Time_Formatter(sunrise);
+
+    const sunset_ = Time_Formatter(sunset);
+
     const myStyles = {
-        background: `url(../../../../../images/1.png) no-repeat`,
         backgroundSize: 'cover',
         backgroundColor: randomColor
     };
@@ -82,7 +44,7 @@ function SingleCard(props) {
                             </div>
                             <div className="container text-center">
                                 <div className="row mt-5">
-                                    <h1>{city},{countryName}</h1>
+                                    <h1>{city},{country}</h1>
                                     <h5 className="list-fonts">{time}</h5>
                                     <div className="row mt-4 mb-4">
                                         <div className="col-sm-6  border-end">
@@ -91,8 +53,8 @@ function SingleCard(props) {
                                         </div>
                                         <div className="col-sm-6">
                                             <h1>{temperature} &#8451;</h1>
-                                            <h6 className="list-fonts"><b>Temp Min: </b>{minTemperature} &#8451;</h6>
-                                            <h6 className="list-fonts"><b>Temp Max: </b>{maxTemperature} &#8451;</h6>
+                                            <h6 className="list-fonts"><b>Temp Min: </b>{minTemp} &#8451;</h6>
+                                            <h6 className="list-fonts"><b>Temp Max: </b>{maxTemp} &#8451;</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -113,8 +75,8 @@ function SingleCard(props) {
                                         </div>
                                     </div>
                                     <div className="col-sm-4 mt-4">
-                                        <h6 className="list-fonts"><b>Sunrise: </b>{sunrise}</h6>
-                                        <h6 className="list-fonts"><b>Sunset: </b>{sunset}</h6>
+                                        <h6 className="list-fonts"><b>Sunrise: </b>{sunrise_}</h6>
+                                        <h6 className="list-fonts"><b>Sunset: </b>{sunset_}</h6>
                                     </div>
                                 </div>
                             </div>
