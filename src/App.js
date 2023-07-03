@@ -16,10 +16,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/weather/:cityCode" element={<WeatherData />} />
+        <Route path="/weather/:data" element={<WeatherData />} />
       </Routes>
     </Router>
   );
 };
 
 export default App;
+
+
+
