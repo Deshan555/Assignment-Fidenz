@@ -63,7 +63,7 @@ requests. Caching of a particular data should expire in 5 minutes
 - [ ] create a docker file to deploy your application with
 all required services
 
-## Requested Changes 
+## Requested Changes - Lv 01
 
 - [x] Consider the folder grouping for better understanding.
 
@@ -81,6 +81,12 @@ all required services
 
 - [x] Need to implement UI responsiveness.
 
+## Requested Changes - LV 02
+
+- [ ] Implement caching
+- [ ] Duplicate AIP requests
+- [ ] Follow spacing /  best practices
+- [ ] Use of a code formatter
 ## Credits
 
 - [OpenWeatherMap API](https://openweathermap.org/) - Used for retrieving weather data.
