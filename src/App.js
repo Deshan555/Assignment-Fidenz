@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Home from './components/pages/Home';
+import Home from './pages/Home';
 
-import WeatherData from './components/pages/WeatherCard';
+import WeatherData from './pages/WeatherCard';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 

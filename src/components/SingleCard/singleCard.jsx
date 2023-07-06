@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Time_Formatter } from '../../../services/Functions';
+import { Time_Formatter } from '../../services/Functions';
 
-import { timeFormate } from '../../../services/Functions';
+import { timeFormate } from '../../services/Functions';
 
-import { RandomColor } from '../../../services/Functions';
+import { RandomColor } from '../../services/Functions';
 
 import { Link } from 'react-router-dom';
 

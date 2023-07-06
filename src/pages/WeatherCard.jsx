@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Header from './Header/header';
+import Header from '../components/Header/header';
 
-import Footer from './Footer/footer';
+import Footer from '../components/Footer/footer';
 
-import SingleCard from './SingleCard/singleCard';
+import SingleCard from '../components/SingleCard/singleCard';
 
 function WeatherData(){
 

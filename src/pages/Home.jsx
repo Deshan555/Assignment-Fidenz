@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Header from './Header/header';
+import Header from '../components/Header/header';
 
-import Footer from './Footer/footer';
+import Footer from '../components/Footer/footer';
 
-import Weather from './CardHolder/weather';
+import Weather from '../components/CardHolder/weather';
 
-import Finder from './Finder/finder';
+import Finder from '../components/Finder/finder';
 
 function Home(){
 

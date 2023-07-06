@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import { convertKelvinToCelsius } from '../../../services/Functions';
+import { convertKelvinToCelsius } from '../../services/Functions';
 
-import { timeFormate } from '../../../services/Functions';
+import { timeFormate } from '../../services/Functions';
 
-import { RandomColor } from '../../../services/Functions';
+import { RandomColor } from '../../services/Functions';
 
-import { Time_Formatter } from '../../../services/Functions';
+import { Time_Formatter } from '../../services/Functions';
 
 import { Link } from 'react-router-dom';
 
-import { fetchWeatherData } from '../../../services/ApiHandler';
+import { fetchWeatherData } from '../../services/ApiHandler';
 
 function Card(props) {
 
