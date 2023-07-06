@@ -10,3 +10,14 @@ export function fetchWeatherData(city) {
             console.error("Error fetching weather data:", error);
         });
 }
+
+
+
+export function fetchWeatherData(ids) {
+    try {
+        const response = await fetch(`${getWeatherDataByIds}&id=${ids.toString()}`);
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+    }
+}
