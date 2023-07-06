@@ -1,7 +1,7 @@
-import {getWeatherUrl} from '../utils/APIHelper';
+import {getWeatherDataByIds} from '../utils/APIHelper';
 
-export function fetchWeatherData(city) {
-    
+/*export function fetchWeatherData(city) {
+
     const weatherUrl = getWeatherUrl(city);
 
     return fetch(weatherUrl)
@@ -20,4 +20,13 @@ export function fetchWeatherData(ids) {
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
-}
+}*/
+
+export const fetchWeatherData = async (ids) => {
+    try {
+        const response = await fetch(`${getWeatherDataByIds}&id=${ids.toString()}`);
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+    }
+};
