@@ -1,11 +1,10 @@
 import React from "react";
 
 function Footer() {
-
     return (
-        <footer class="footer mt-5 py-3 bg-dark">
-            <div class="container">
-                <span class="text-light"><center>Fidenz Academy - 2023</center></span>
+        <footer className="footer mt-5 py-3 bg-dark">
+            <div className="container">
+                <span className="text-light"><center>Fidenz Academy - 2023</center></span>
             </div>
         </footer>
     );
