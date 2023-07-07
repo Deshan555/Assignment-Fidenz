@@ -1,6 +1,6 @@
-# React Weather Application
+# React CardHolder Application
 
-The Weather Dashboard is a web application that allows users to get the current weather information for different cities using the OpenWeatherMap API. It provides real-time weather data such as temperature, weather conditions, and more.
+The CardHolder Dashboard is a web application that allows users to get the current weather information for different cities using the OpenWeatherMap API. It provides real-time weather data such as temperature, weather conditions, and more.
 
 ![improved-screenshot](https://github.com/Deshan555/Assignment-Fidenz/blob/main/application-1.png)
 
@@ -83,10 +83,10 @@ all required services
 
 ## Requested Changes - LV 02
 
-- [ ] Implement caching
-- [ ] Duplicate AIP requests
-- [ ] Follow spacing /  best practices
-- [ ] Use of a code formatter
+- [x] Implement caching
+- [x] Duplicate AIP requests
+- [x] Follow spacing /  best practices
+- [x] Use of a code formatter
 ## Credits
 
 - [OpenWeatherMap API](https://openweathermap.org/) - Used for retrieving weather data.
