@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { fetchWeatherData } from "../../services/ApiHandler";
-import { Link } from "react-router-dom";
-import { RandomColor, timeFormat, Time_Formatter } from "../../services/Functions";
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {fetchWeatherData} from "../../services/ApiHandler";
+import {Link, useParams} from "react-router-dom";
+import {RandomColor, Time_Formatter, timeFormat} from "../../services/Functions";
 
-function SingleCard(){
-    const { cityCode } = useParams();
+function SingleCard() {
+    const {cityCode} = useParams();
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
@@ -21,15 +20,15 @@ function SingleCard(){
     }, [cityCode]);
 
 
-    function displayWeatherData(){
+    function displayWeatherData() {
         const [
             {
                 name,
                 visibility,
-                main: { temp, temp_min, temp_max, pressure, humidity },
-                wind: { speed, deg },
-                sys: { sunrise, sunset, country },
-                weather: [{ description, icon }],
+                main: {temp, temp_min, temp_max, pressure, humidity},
+                wind: {speed, deg},
+                sys: {sunrise, sunset, country},
+                weather: [{description, icon}],
             },
         ] = weatherData;
 
@@ -42,7 +41,7 @@ function SingleCard(){
             <div className="container">
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center">
-                        <div className="card weather-card"  style={myStyles}>
+                        <div className="card weather-card" style={myStyles}>
                             <div className="card-head">
                                 <div className="mt-3 ml-4">
                                     <Link to={`/`} className="links">
@@ -81,12 +80,12 @@ function SingleCard(){
                                         <div className="col-sm-4 border-end">
                                             <div className="mt-2">
                                                 <i className="bi bi-arrow-up-right-circle-fill icon"></i>
-                                                <h5 className="list-fonts"><b></b>{ speed+"m/s, "+deg+" deg" }</h5>
+                                                <h5 className="list-fonts"><b></b>{speed + "m/s, " + deg + " deg"}</h5>
                                             </div>
                                         </div>
                                         <div className="col-sm-4 mt-4">
-                                            <h6 className="list-fonts"><b>Sunrise: </b>{ Time_Formatter(sunrise) }</h6>
-                                            <h6 className="list-fonts"><b>Sunset: </b>{ Time_Formatter(sunset) }</h6>
+                                            <h6 className="list-fonts"><b>Sunrise: </b>{Time_Formatter(sunrise)}</h6>
+                                            <h6 className="list-fonts"><b>Sunset: </b>{Time_Formatter(sunset)}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +95,7 @@ function SingleCard(){
                 </div>
             </div>
         );
-    };
+    }
 
     return weatherData && cityCode ? (displayWeatherData()) : (<div>Loading Please Wait...</div>);
 }
