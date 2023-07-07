@@ -27,62 +27,66 @@ function SingleCard(){
                 name,
                 visibility,
                 main: { temp, temp_min, temp_max, pressure, humidity },
-                wind: { speed },
-                sys: { sunrise, sunset },
+                wind: { speed, deg },
+                sys: { sunrise, sunset, country },
                 weather: [{ description, icon }],
             },
         ] = weatherData;
 
+        const myStyles = {
+            backgroundSize: 'cover',
+            backgroundColor: RandomColor(),
+        };
+
         return (
             <div className="container">
-                <div id="cards" className="d-flex justify-content-center">
-                    <div className="" id="weather-container">
-                        <div>
-                            <div
-                                className="card weather-card"
-                                style={{
-                                    background: `url(../../../../../images/1.png) no-repeat, ${RandomColor()}`,
-                                }}
-                            >
-                                <Link to={`/`} className="links">
-                                    <i className="bi bi-arrow-left back-icon px-2"></i>
-                                </Link>
-                                <div>
-                                    <div className="container text-center">
-                                        <div className="row mt-5">
-                                            <div className="col-sm-6">
-                                                <h3>{name}</h3>
-                                                <h5>{timeFormat()}</h5>
-                                                <img
-                                                    src={`http://openweathermap.org/img/w/${icon}.png`}
-                                                    alt="weather-icon"
-                                                />
-                                                <h6>{description}</h6>
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-center align-items-center">
+                        <div className="card weather-card"  style={myStyles}>
+                            <div className="card-head">
+                                <div className="mt-3 ml-4">
+                                    <Link to={`/`} className="links">
+                                        <b>
+                                            <i className="bi bi-arrow-left back-icon mx-3 back-icon"></i>
+                                        </b>
+                                    </Link>
+                                </div>
+                                <div className="container text-center">
+                                    <div className="row mt-5">
+                                        <h1>{name},{country}</h1>
+                                        <h5 className="list-fonts">{timeFormat()}</h5>
+                                        <div className="row mt-4 mb-4">
+                                            <div className="col-sm-6  border-end">
+                                                <img src={`http://openweathermap.org/img/w/${icon}.png`}
+                                                     alt="weather-icon"/>
+                                                <h5>{description}</h5>
                                             </div>
                                             <div className="col-sm-6">
-                                                <h2>{Math.round(temp)} &#8451;</h2>
-                                                <h6>{`Temp Min: ${Math.round(temp_min)}`} &#8451;</h6>
-                                                <h6>{`Temp Max: ${Math.round(temp_max)}`} &#8451;</h6>
+                                                <h1>{temp} &#8451;</h1>
+                                                <h6 className="list-fonts"><b>Temp Min: </b>{temp_min} &#8451;</h6>
+                                                <h6 className="list-fonts"><b>Temp Max: </b>{temp_max} &#8451;</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card-body">
-                                    <div className="container text-center">
-                                        <div className="row">
-                                            <div className="col-sm-4 border-end">
-                                                <h6>{`Pressure: ${pressure} Hpa`}</h6>
-                                                <h6>{`Humidity: ${humidity}%`}</h6>
-                                                <h6>{`Visibility: ${visibility}Km`}</h6>
+                            </div>
+                            <div className="card-body rounded-bottom rounded-lg">
+                                <div className="container text-center">
+                                    <div className="row">
+                                        <div className="col-sm-4 border-end">
+                                            <h6 className="list-font"><b>Pressure: </b>{pressure} Hpa</h6>
+                                            <h6 className="list-font"><b>Humidity: </b>{humidity}%</h6>
+                                            <h6 className="list-font"><b>Visibility: </b>{visibility}Km</h6>
+                                        </div>
+                                        <div className="col-sm-4 border-end">
+                                            <div className="mt-2">
+                                                <i className="bi bi-arrow-up-right-circle-fill icon"></i>
+                                                <h5 className="list-fonts"><b></b>{ speed+"m/s, "+deg+" deg" }</h5>
                                             </div>
-                                            <div className="col-sm-4 border-end">
-                                                <i className="bi bi-arrow-up-right-circle-fill"></i>
-                                                <h5>{`Wind: ${speed} m/s`}</h5>
-                                            </div>
-                                            <div className="col-sm-4">
-                                                <h6>{`Sunrise: ${Time_Formatter(sunrise)}`}</h6>
-                                                <h6>{`Sunset: ${Time_Formatter(sunset)}`}</h6>
-                                            </div>
+                                        </div>
+                                        <div className="col-sm-4 mt-4">
+                                            <h6 className="list-fonts"><b>Sunrise: </b>{ Time_Formatter(sunrise) }</h6>
+                                            <h6 className="list-fonts"><b>Sunset: </b>{ Time_Formatter(sunset) }</h6>
                                         </div>
                                     </div>
                                 </div>
