@@ -1,23 +1,12 @@
 import React from 'react';
-
-import Home from './pages/Home';
-
-import WeatherData from './pages/WeatherCard';
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import Routes from './Routes';
 import './App.css';
 
 const App = () => {
-
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-
-        <Route path="/:country/:temperature/:minTemp/:maxTemp/:pressure/:humidity/:visibility/:wind/:sunrise/:sunset/:weatherDescription/:weatherIcon/:city" element={<WeatherData />} />
-      </Routes>
-    </Router>
+    return (
+    <div className="App">
+      <Routes />
+    </div>
   );
 };
 
