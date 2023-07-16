@@ -14,11 +14,14 @@ function Card(props) {
         weather: [{description, icon}],
     } = props;
 
+    const windIconStyle = {
+        transform: `rotate(${140 + deg}deg)`,
+    };
     const displayCard = () => {
         return (
             <Link to={`/city/${id}`} className="links">
-                <div>
-                    <div className="card weather-card"
+                <div className="gx-2">
+                    <div className="card w-75 weather-card"
                          style={{
                              background: `url(../../../../../images/1.png) no-repeat, ${RandomColor()}`,
                          }}>
@@ -53,8 +56,21 @@ function Card(props) {
                                     </div>
                                     <div className="col-sm-4 border-end">
                                         <div className="mt-4">
-                                            <i className="bi bi-arrow-up-right-circle-fill"></i>
-                                            <h5 className="list-font">{speed + " m/s," + deg + " deg"}</h5>
+                                            <center>
+                                                <div id="windicon" className="flex">
+                                                    <svg style={windIconStyle} xmlns="http://www.w3.org/2000/svg"
+                                                         viewBox="0 0 24 24">
+                                                        <g>
+                                                            <path fill="none" d="M0 0h24v24H0z"/>
+                                                            <path
+                                                                d="M1.923 9.37c-.51-.205-.504-.51.034-.689l19.086-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.475.553-.717.07L11 13 1.923 9.37zm4.89-.2l5.636 2.255 3.04 6.082 3.546-12.41L6.812 9.17z"
+                                                                fill="#ffffff"/>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <h5 className="list-font">{`${speed} m/s, ${deg} deg`}</h5>
+                                            </center>
+
                                         </div>
                                     </div>
                                     <div className="col-sm-4 mt-4">
