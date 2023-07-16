@@ -9,29 +9,29 @@ const CardHolder = () => {
 
     useEffect(() => {
         const getWeatherData = async () => {
-            const cityDataMap = {};
-
-            cities.List.forEach((city) => {
-                const cityCode = city.CityCode;
-                const expireTime = city.expirationTime;
-                cityDataMap[cityCode] = expireTime;
-            });
+            const cityDataMap = cities.List.reduce((map, city) => {
+                const {CityCode: cityCode, expirationTime} = city;
+                map[cityCode] = expirationTime;
+                return map;
+            }, {});
 
             try {
-                const cachedData = {};
-                Object.keys(cityDataMap).forEach((cityCode) => {
+                const cachedData = Object.keys(cityDataMap).reduce((data, cityCode) => {
                     const cityData = getCachedData(cityCode, cityDataMap[cityCode]);
                     if (cityData) {
-                        cachedData[cityCode] = cityData;
+                        data[cityCode] = cityData;
                     }
-                });
+                    return data;
+                }, {});
 
                 if (Object.keys(cachedData).length === Object.keys(cityDataMap).length) {
                     setWeatherData(cachedData);
                     return;
                 }
 
-                const missingCityCodes = Object.keys(cityDataMap).filter((cityCode) => !cachedData[cityCode]);
+                const missingCityCodes = Object.keys(cityDataMap).filter(
+                    (cityCode) => !cachedData[cityCode]
+                );
                 const data = await fetchWeatherData(missingCityCodes);
 
                 const updatedWeatherData = {...cachedData};
@@ -49,12 +49,14 @@ const CardHolder = () => {
         cities?.List?.length !== 0 && getWeatherData();
     }, []);
 
-    const cardList = Object.values(weatherData).map((cityData) => <Card key={cityData?.id} {...cityData} />);
+    const cardList = Object.values(weatherData).map((cityData) => (
+        <Card key={cityData?.id} {...cityData} />
+    ));
 
     const displayCards = () => (
         <center>
             <div id="cards" className="container mt-5">
-                <div className="row row-cols-1 row-cols-md-2 g-4" id="weather-container">
+                <div className="row row-cols-1 row-cols-md-2 g-4 " id="weather-container">
                     {cardList}
                 </div>
             </div>
