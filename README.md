@@ -87,8 +87,14 @@ all required services
 - [x] Duplicate AIP requests
 - [x] Follow spacing /  best practices
 - [x] Use of a code formatter
-## Credits
 
+## Request Changes - LV 03
+
+- [x] Avoid using multiple map function.(Reduce multiple for loops for performance).
+- [x] Improve the code re-usability and remove redundant codes.
+- [x] UI should be similar design as in the provided.
+
+## Credits
 - [OpenWeatherMap API](https://openweathermap.org/) - Used for retrieving weather data.
 - [Bootstrap](https://getbootstrap.com/) - Used for styling the user interface.
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
