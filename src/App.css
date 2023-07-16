@@ -14,7 +14,6 @@ body {
     justify-content: center;
 }
 
-/* Enter city search bar */
 #search_input {
     background: rgb(30, 32, 39);
     color: rgb(242, 240, 240);
@@ -28,7 +27,6 @@ body {
     margin: auto;
 }
 
-/* add city button */
 #search_button {
     height: 40px;
     background-color: #6c5dd3;
@@ -53,13 +51,6 @@ body {
 
 .card-body {
     background-color: #303030;
-}
-
-.single-card {
-    background: url(./images/card.png) no-repeat, rgb(30, 32, 39);
-    background-size: cover, auto;
-    background-size: 100%;
-    width: 100%;
 }
 
 .card-head {
@@ -93,7 +84,6 @@ body {
 .icon {
     font-size: 30px;
 }
-
 
 #windicon {
     width: 24px;
