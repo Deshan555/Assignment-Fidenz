@@ -70,7 +70,6 @@ function Card(props) {
                                                 </div>
                                                 <h5 className="list-font">{`${speed} m/s, ${deg} deg`}</h5>
                                             </center>
-
                                         </div>
                                     </div>
                                     <div className="col-sm-4 mt-4">
