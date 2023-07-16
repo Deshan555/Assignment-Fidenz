@@ -45,7 +45,7 @@ function SingleCard() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center align-items-center">
-                        <div className="card w-75 weather-card" style={myStyles}>
+                        <div className="card w-75 weather-single mt-5" style={myStyles}>
                             <div className="card-head">
                                 <div className="mt-3 ml-4">
                                     <Link to={`/`} className="links">
@@ -62,7 +62,7 @@ function SingleCard() {
                                             <div className="col-sm-6  border-end">
                                                 <img src={`http://openweathermap.org/img/w/${icon}.png`}
                                                      alt="weather-icon"/>
-                                                <h5>{description}</h5>
+                                                <h5 className="mt-3">{description}</h5>
                                             </div>
                                             <div className="col-sm-6">
                                                 <h1>{temp} &#8451;</h1>
