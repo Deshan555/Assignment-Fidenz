@@ -21,7 +21,7 @@ function Card(props) {
         return (
             <Link to={`/city/${id}`} className="links">
                 <div className="gx-2">
-                    <div className="card w-75 weather-card"
+                    <div className="card w-80 weather-card"
                          style={{
                              background: `url(../../../../../images/1.png) no-repeat, ${RandomColor()}`,
                          }}>
@@ -32,10 +32,10 @@ function Card(props) {
                                         <h5>{name},{country}</h5>
                                         <h5 className="list-font">{timeFormat()}</h5>
                                         <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather-icon"/>
-                                        <span>{description}</span>
+                                        <span className="mt-0"> {description}</span>
                                     </div>
                                     <div className="col-sm-6">
-                                        <h4>{temp} &#8451;</h4>
+                                        <h2>{temp} &#8451;</h2>
                                         <h6 className="list-font"><b>Temp Min: </b>{temp_min} &#8451;</h6>
                                         <h6 className="list-font"><b>Temp Max: </b>{temp_max} &#8451;</h6>
                                     </div>
