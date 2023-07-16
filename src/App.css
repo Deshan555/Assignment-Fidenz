@@ -5,6 +5,42 @@ body {
     color: azure;
 }
 
+.p-lg-5 {
+    padding: 16px !important;
+}
+
+.container,
+.row {
+    justify-content: center;
+}
+
+/* Enter city search bar */
+#search_input {
+    background: rgb(30, 32, 39);
+    color: rgb(242, 240, 240);
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+}
+
+.search-box {
+    width: 384px;
+    margin: auto;
+}
+
+/* add city button */
+#search_button {
+    height: 40px;
+    background-color: #6c5dd3;
+    color: rgb(242, 240, 240);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.weather_cards {
+    margin-top: 32px;
+}
+
 .weather-card {
     background: url(./images/card.png) no-repeat, rgb(30, 32, 39);
     background-size: cover, auto;
@@ -39,18 +75,6 @@ body {
     font-size: larger;
 }
 
-.font-Color {
-    color: aliceblue;
-}
-
-.finder {
-    width: 40%;
-    height: 20px;
-}
-
-.finder-button {
-    background: 'blueviolet';
-}
 
 .list-font {
     color: aliceblue;
@@ -69,3 +93,32 @@ body {
 .icon {
     font-size: 30px;
 }
+
+
+#windicon {
+    width: 24px;
+    margin-top: 8px;
+}
+
+/* for devices sizes less than 480px */
+@media (max-width: 480px) {
+    body {
+        background-size: auto;
+    }
+
+    .card,
+    .card_down {
+        width: 320px;
+    }
+
+    .rec_up {
+        width: 160px;
+    }
+
+    #city_name {
+        font-size: 20px;
+    }
+
+}
+
+
