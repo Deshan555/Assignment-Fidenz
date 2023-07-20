@@ -4,6 +4,7 @@ import Card from "../Card/card";
 import {fetchWeatherData} from "../../services/ApiHandler";
 import {getCachedData, setCachedData} from "../../utils/LocalStorageHandler";
 
+
 const CardHolder = () => {
     const [weatherData, setWeatherData] = useState([]);
 
@@ -56,11 +57,12 @@ const CardHolder = () => {
     const displayCards = () => (
         <center>
             <div id="cards" className="container mt-5">
-                <div className="row row-cols-1 row-cols-md-2 g-4 " id="weather-container">
+                <div className="row row-cols-sm-2 g-2" id="weather-container">
                     {cardList}
                 </div>
             </div>
         </center>
+
     );
 
     return weatherData ? displayCards() : <div>Loading Data...</div>;

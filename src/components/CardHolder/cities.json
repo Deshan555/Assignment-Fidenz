@@ -5,7 +5,7 @@
             "CityName": "Colombo",
             "Temp": "33.0",
             "Status": "Clouds",
-            "expirationTime": 1
+            "expirationTime": 2
         },
         {
             "CityCode": "1850147",
@@ -19,7 +19,7 @@
             "CityName": "Liverpool",
             "Temp": "16.5",
             "Status": "Rain",
-            "expirationTime": 1
+            "expirationTime": 2
         },
         {
             "CityCode": "2988507",
@@ -33,7 +33,7 @@
             "CityName": "Sydney",
             "Temp": "27.3",
             "Status": "Rain",
-            "expirationTime": 3
+            "expirationTime": 2
         },
         {
             "CityCode": "4930956",
@@ -54,7 +54,7 @@
             "CityName": "Oslo",
             "Temp": "-3.9",
             "Status": "Clear",
-            "expirationTime": 1
+            "expirationTime": 2
         }
     ]
 }
