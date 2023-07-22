@@ -1,20 +1,28 @@
-export const setCachedData = (cityCode, cityData) => {
-    const cachedDataToStore = {
-        timestamp: new Date().getTime(),
-        data: cityData,
-    };
-    localStorage.setItem(cityCode, JSON.stringify(cachedDataToStore));
+export const setCachedData = (cityData) => {
+    localStorage.setItem("weatherData", JSON.stringify(cityData));
 };
 
-export const getCachedData = (cityCode, updater) => {
-    const cityData = localStorage.getItem(cityCode);
-    if (cityData) {
-        const parsedData = JSON.parse(cityData);
-        const currentTime = new Date().getTime();
-        const {timestamp, data} = parsedData;
-        if (currentTime - timestamp < updater * 60 * 1000) {
-            return data;
-        }
+export const getCachedData = () => {
+    const weatherData = localStorage.getItem("weatherData");
+    if (weatherData) {
+        return JSON.parse(weatherData);
     }
     return null;
+};
+
+export const isExpired = (data, key1, key2) => {
+    if (!data[key1] || !data[key2]) return true;
+    const currentTime = new Date().getTime();
+    return !(currentTime - data[key1] < data[key2] * 60 * 1000);
+};
+
+export const setRequiredData = (elements, initialCitiesData) => {
+    return elements.map((el) => ({
+        ...el,
+        CityCode: el?.id,
+        expirationTime: initialCitiesData.find(
+            (city) => parseInt(city.CityCode, 10) === el.id
+        )?.expirationTime,
+        timestamp: new Date().getTime()
+    }));
 };
