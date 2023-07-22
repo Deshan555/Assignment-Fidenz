@@ -1,56 +1,47 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import cities from "./cities.json";
 import Card from "../Card/card";
-import {fetchWeatherData} from "../../services/ApiHandler";
-import {getCachedData, setCachedData} from "../../utils/LocalStorageHandler";
-
+import { fetchWeatherData } from "../../services/ApiHandler";
+import {
+    getCachedData,
+    setCachedData,
+    isExpired,
+    setRequiredData,
+} from "../../utils/LocalStorageHandler";
 
 const CardHolder = () => {
     const [weatherData, setWeatherData] = useState([]);
 
     useEffect(() => {
-        const getWeatherData = async () => {
-            const cityDataMap = cities.List.reduce((map, city) => {
-                const {CityCode: cityCode, expirationTime} = city;
-                map[cityCode] = expirationTime;
-                return map;
-            }, {});
+        (async () => {
+            const cachedData = getCachedData();
+            const cityData =
+                Array.isArray(cachedData) && cachedData.length > 0
+                    ? cachedData
+                    : cities.List;
+            if (cityData) {
+                const expiredCityData = [];
+                const notExpiredCityData = [];
 
-            try {
-                const cachedData = Object.keys(cityDataMap).reduce((data, cityCode) => {
-                    const cityData = getCachedData(cityCode, cityDataMap[cityCode]);
-                    if (cityData) {
-                        data[cityCode] = cityData;
-                    }
-                    return data;
-                }, {});
-
-                if (Object.keys(cachedData).length === Object.keys(cityDataMap).length) {
-                    setWeatherData(cachedData);
-                    return;
-                }
-
-                const missingCityCodes = Object.keys(cityDataMap).filter(
-                    (cityCode) => !cachedData[cityCode]
-                );
-                const data = await fetchWeatherData(missingCityCodes);
-
-                const updatedWeatherData = {...cachedData};
-                data?.list.forEach((cityData) => {
-                    const cityCode = cityData?.id;
-                    updatedWeatherData[cityCode] = cityData;
-                    setCachedData(cityCode, cityData);
+                cityData.forEach((element) => {
+                    if (isExpired(element, "timestamp", "expirationTime"))
+                        expiredCityData.push(element.CityCode);
+                    else notExpiredCityData.push(element);
                 });
-                setWeatherData(updatedWeatherData);
-            } catch (error) {
-                console.log("Error Occurred: " + error);
-            }
-        };
 
-        cities?.List?.length !== 0 && getWeatherData();
+                if (expiredCityData.length === 0) setWeatherData(notExpiredCityData);
+                else {
+                    const data = await fetchWeatherData(expiredCityData);
+                    const dataWithExpTime = setRequiredData(data?.list, cities?.List);
+                    const validData = [...notExpiredCityData, ...dataWithExpTime];
+                    setWeatherData(validData);
+                    setCachedData(validData);
+                }
+            }
+        })();
     }, []);
 
-    const cardList = Object.values(weatherData).map((cityData) => (
+    const cardList = weatherData.map((cityData) => (
         <Card key={cityData?.id} {...cityData} />
     ));
 
@@ -62,7 +53,6 @@ const CardHolder = () => {
                 </div>
             </div>
         </center>
-
     );
 
     return weatherData ? displayCards() : <div>Loading Data...</div>;
