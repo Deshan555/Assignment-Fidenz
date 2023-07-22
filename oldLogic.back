@@ -1,0 +1,41 @@
+    // useEffect(() => {
+    //     const getWeatherData = async () => {
+    //         const cityDataMap = cities.List.reduce((map, city) => {
+    //             const {CityCode: cityCode, expirationTime} = city;
+    //             map[cityCode] = expirationTime;
+    //             return map;
+    //         }, {});
+
+    //         try {
+    //             const cachedData = Object.keys(cityDataMap).reduce((data, cityCode) => {
+    //                 const cityData = getCachedData(cityCode, cityDataMap[cityCode]);
+    //                 if (cityData) {
+    //                     data[cityCode] = cityData;
+    //                 }
+    //                 return data;
+    //             }, {});
+
+    //             if (Object.keys(cachedData).length === Object.keys(cityDataMap).length) {
+    //                 setWeatherData(cachedData);
+    //                 return;
+    //             }
+
+    //             const missingCityCodes = Object.keys(cityDataMap).filter(
+    //                 (cityCode) => !cachedData[cityCode]
+    //             );
+    //             const data = await fetchWeatherData(missingCityCodes);
+
+    //             const updatedWeatherData = {...cachedData};
+    //             data?.list.forEach((cityData) => {
+    //                 const cityCode = cityData?.id;
+    //                 updatedWeatherData[cityCode] = cityData;
+    //                 setCachedData(cityCode, cityData);
+    //             });
+    //             setWeatherData(updatedWeatherData);
+    //         } catch (error) {
+    //             console.log("Error Occurred: " + error);
+    //         }
+    //     };
+
+    //     cities?.List?.length !== 0 && getWeatherData();
+    // }, []);
