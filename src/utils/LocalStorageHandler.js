@@ -8,7 +8,7 @@ export const getCachedData = () => {
         return JSON.parse(weatherData);
     }
     return null;
-};
+}; 
 
 export const isExpired = (data, key1, key2) => {
     if (!data[key1] || !data[key2]) return true;
