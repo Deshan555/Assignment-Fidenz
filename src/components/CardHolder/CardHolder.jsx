@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import cities from "./cities.json";
 import Card from "../Card/card";
-import { fetchWeatherData } from "../../services/ApiHandler";
-import {
-    getCachedData,
-    setCachedData,
-    isExpired,
-    setRequiredData,
-} from "../../utils/LocalStorageHandler";
+import {fetchWeatherData} from "../../services/ApiHandler";
+import {getCachedData, isExpired, setCachedData, setRequiredData,} from "../../utils/LocalStorageHandler";
 
 const CardHolder = () => {
     const [weatherData, setWeatherData] = useState([]);
@@ -15,27 +10,31 @@ const CardHolder = () => {
     useEffect(() => {
         (async () => {
             const cachedData = getCachedData();
-            const cityData =
-                Array.isArray(cachedData) && cachedData.length > 0
-                    ? cachedData
-                    : cities.List;
+
+            const cityData = Array.isArray(cachedData) && cachedData.length > 0 ? cachedData : cities.List;
+
             if (cityData) {
                 const expiredCityData = [];
                 const notExpiredCityData = [];
 
-                cityData.forEach((element) => {
+                for (let i = 0; i < cityData.length; i++) {
+                    const element = cityData[i];
+
                     if (isExpired(element, "timestamp", "expirationTime"))
                         expiredCityData.push(element.CityCode);
-                    else notExpiredCityData.push(element);
-                });
+                    else
+                        notExpiredCityData.push(element);
+                }
 
-                if (expiredCityData.length === 0) setWeatherData(notExpiredCityData);
-                else {
-                    const data = await fetchWeatherData(expiredCityData);
-                    const dataWithExpTime = setRequiredData(data?.list, cities?.List);
-                    const validData = [...notExpiredCityData, ...dataWithExpTime];
-                    setWeatherData(validData);
-                    setCachedData(validData);
+                if (expiredCityData.length === 0) {
+                    setWeatherData(notExpiredCityData);
+                } else {
+                    fetchWeatherData(expiredCityData).then(function (data) {
+                        const dataWithExpTime = setRequiredData(data && data.list, cities && cities.List);
+                        const validData = notExpiredCityData.concat(dataWithExpTime);
+                        setWeatherData(validData);
+                        setCachedData(validData);
+                    });
                 }
             }
         })();
